@@ -1,3 +1,4 @@
+// calcule le nombre de diviseurs du PGCD (Plus Grand Commun Diviseur) d'une liste de nombres donnés en entrée (j'ai entré n nombres dans un vecteur)
 #include <bits/stdc++.h>
 using ll = long long;
 using namespace std;
