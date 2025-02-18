@@ -1,0 +1,45 @@
+SET SERVEROUTPUT ON;
+
+DECLARE
+    TYPE int_table IS TABLE OF NUMBER INDEX BY PLS_INTEGER;
+    a int_table;
+    n NUMBER := 5; -- Nombre d'éléments dans l'exemple
+    g NUMBER := 0;
+    ans NUMBER := 0;
+    FUNCTION gcd(x NUMBER, y NUMBER) RETURN NUMBER IS
+        temp NUMBER;
+    BEGIN
+        WHILE y != 0 LOOP
+            temp := x MOD y;
+            x := y;
+            y := temp;
+        END LOOP;
+        RETURN x;
+    END gcd;
+    
+BEGIN
+    
+    a(1) := 12;
+    a(2) := 18;
+    a(3) := 24;
+    a(4) := 36;
+    a(5) := 48;
+
+    -- Calcul du PGCD de tous les éléments
+    g := a(1);
+    FOR i IN 2..n LOOP
+        g := gcd(g, a(i));
+    END LOOP;
+
+    -- Compter le nombre de diviseurs de g
+    FOR i IN 1..TRUNC(SQRT(g)) LOOP
+        IF g MOD i = 0 THEN
+            ans := ans + 1;
+            IF i != g / i THEN
+                ans := ans + 1;
+            END IF;
+        END IF;
+    END LOOP;
+    DBMS_OUTPUT.PUT_LINE('Nombre de diviseurs communs: ' || ans);
+END;
+/
