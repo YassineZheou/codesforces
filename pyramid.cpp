@@ -19,8 +19,7 @@ int main() {
             pyramid[i][j] = '*';
         }
     }
-
-    // Affichage de la pyramide
+// tawa je vais afficher l pyramid ta3na
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < 2 * n; j++) {
             cout << pyramid[i][j];
